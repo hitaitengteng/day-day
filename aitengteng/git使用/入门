@@ -1,0 +1,52 @@
+第一步，创建一个版本库非常简单，首先，选择一个合适的地方，创建一个空目录：
+$ mkdir learngit
+$ cd learngit
+$ pwd
+/Users/michael/learngit
+
+第二步，通过git init命令把这个目录变成Git可以管理的仓库：
+$ git init
+
+
+第三步，如何把文件添加到版本库。
+现在我们在刚才创建的空目录下创建编写文件，把一个文件放到Git仓库只需要两步：
+第一步，用命令git add告诉Git，把文件添加到仓库：
+$ git add readme.txt
+执行上面的命令，没有任何显示，这就对了，Unix的哲学是“没有消息就是好消息”，说明添加成功。
+第二步，用命令git commit告诉Git，把文件提交到仓库：
+$ git commit -m "wrote a readme file"
+# 简单解释一下git commit命令，-m后面输入的是本次提交的说明，可以输入任意内容，当然最好是有意义的，这样你就能从历史记录里方便地找到改动记录。
+输出结果：
+[master (root-commit) eaadf4e] wrote a readme file
+ 1 file changed, 2 insertions(+)
+ create mode 100644 readme.txt
+git commit命令执行成功后会告诉你，1 file changed：1个文件被改动（我们新添加的readme.txt文件）；2 insertions：插入了两行内容（readme.txt有两行内容）。
+为什么Git添加文件需要add，commit一共两步呢？因为commit可以一次提交很多文件，所以你可以多次add不同的文件，比如：
+$ git add file1.txt
+$ git add file2.txt file3.txt
+$ git commit -m "add 3 files."
+
+第四步，改动文件
+我们已经成功地添加并提交了一个readme.txt文件，现在，是时候继续工作了，于是，我们继续修改readme.txt文件
+1.使用命令查看结果
+$ git status
+输出：
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   readme.txt
+no changes added to commit (use "git add" and/or "git commit -a")
+git status命令可以让我们时刻掌握仓库当前的状态，上面的命令输出告诉我们，readme.txt被修改，即被modified过了，但还没有准备提交的修改
+2.查看修改内容
+$ git diff readme.txt
+输出结果
+diff --git a/readme.txt b/readme.txt
+index 46d49bf..9247db6 100644
+--- a/readme.txt
++++ b/readme.txt
+@@ -1,2 +1,2 @@
+-Git is a version control system.
++Git is a distributed version control system.
+ Git is free software.
