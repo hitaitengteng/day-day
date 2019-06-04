@@ -1,0 +1,32 @@
+#创建本地仓库
+#在文件目录下打开gitbush
+$git init
+#修改后添加
+$git add (文件名)
+#提交到暂存区
+$git commit -m "这里写注释"
+#查看命令结果
+$git status
+#查看不同（或者说修改前后变化）
+$git diff  
+
+版本回退
+#查看历史记录
+$git log
+#只输出必要信息
+$git log --pretty=oneline
+#回退到上一个版本
+$git reset --hard HEAD^
+#回退到指定版本
+$ git reset --hard （这里写使用git log 命令后的查出的数字的前几位即可）
+
+
+与github关联
+#关联本地仓库
+$ git remote add origin （github仓库网址）
+#将原仓库的东西下载
+$git pull origin master --allow-unrelated-histories
+#以把本地库（commit之后的内容）的所有内容推送到远程库上
+$ git push -u origin master
+#之后提交可以不用参数-u
+$ git push origin master
